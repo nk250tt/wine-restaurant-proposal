@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模式五 · 酒主题融合创意西餐厅 · 品牌转型企划</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Noto+Serif+SC:wght@300;400;500;600&family=Newsreader:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0708;
+    --bg-soft: #160c0e;
+    --bg-card: #1c1113;
+    --line: #2a1d1f;
+    --line-soft: #1f1516;
+    --wine: #722F37;
+    --wine-deep: #4a1e23;
+    --wine-bright: #B8362E;
+    --gold: #C9A876;
+    --gold-bright: #E5C988;
+    --cream: #EDE4D0;
+    --cream-muted: #8A7E6E;
+    --cream-dim: #5C5347;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  ::selection { background: var(--wine-bright); color: var(--cream); }
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Noto Serif SC', 'Newsreader', serif;
+    font-weight: 300;
+    line-height: 1.65;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* === Grain overlay === */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 100;
+    mix-blend-mode: overlay;
+  }
+
+  /* === Custom cursor === */
+  .cursor {
+    position: fixed; top: 0; left: 0;
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: width 0.3s, height 0.3s, background 0.3s;
+  }
+  .cursor.hover { width: 36px; height: 36px; background: var(--wine-bright); }
+  @media (hover: none) { body { cursor: auto; } .cursor { display: none; } }
+
+  /* === Layout === */
+  .wrap { max-width: 1380px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 72px); }
+
+  /* === Hero === */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    padding: clamp(32px, 5vw, 56px) 0 clamp(64px, 8vw, 96px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 80%, rgba(114, 47, 55, 0.4) 0%, transparent 55%),
+      radial-gradient(ellipse at 90% 20%, rgba(201, 168, 118, 0.12) 0%, transparent 45%),
+      radial-gradient(ellipse at 50% 50%, rgba(184, 54, 46, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream-muted);
+    position: relative;
+    z-index: 2;
+  }
+  .meta em {
+    color: var(--gold);
+    font-style: normal;
+  }
+  .hero-stage {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: clamp(40px, 6vw, 96px);
+    align-items: end;
+    position: relative;
+    z-index: 2;
+    margin-top: 8vh;
+  }
+  .title-block { position: relative; }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--gold);
+  }
+  .title {
+    font-family: 'Playfair Display', 'Noto Serif SC', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(56px, 9vw, 156px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--cream);
+  }
+  .title .static { font-style: normal; font-weight: 300; }
+  .title .accent {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--wine-bright);
+  }
+  .title small {
+    display: block;
+    margin-top: 24px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    color: var(--cream-muted);
+    font-style: normal;
+    font-weight: 400;
+  }
+  .hero-side {
+    position: relative;
+    padding-bottom: 12px;
+  }
+  .hero-side .lede {
+    font-family: 'Playfair Display', 'Noto Serif SC', serif;
+    font-weight: 300;
+    font-size: clamp(15px, 1.3vw, 19px);
+    line-height: 1.55;
+    color: var(--cream);
+    max-width: 38ch;
+  }
+  .hero-side .lede em {
+    color: var(--gold);
+    font-style: italic;
+  }
+  .hero-side .figure {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .hero-side .figure div span {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 32px;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .hero-side .figure div small {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    display: block;
+  }
+
+  /* === Wine pour visual (hero decoration) === */
+  .wine-pour {
+    position: absolute;
+    right: -2%;
+    top: 0;
+    height: 100%;
+    width: 30%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.55;
+  }
+
+  /* === Section base === */
+  section {
+    padding: clamp(80px, 12vh, 160px) 0;
+    position: relative;
+    border-top: 1px solid var(--line-soft);
+  }
+  .section-head {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: clamp(24px, 4vw, 64px);
+    align-items: end;
+    margin-bottom: clamp(48px, 7vw, 96px);
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-head .num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(64px, 9vw, 140px);
+    line-height: 1;
+    color: var(--wine);
+    letter-spacing: -0.04em;
+  }
+  .section-head h2 {
+    font-family: 'Playfair Display', 'Noto Serif SC', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(28px, 3.5vw, 48px);
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .section-head .index {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream-muted);
+    text-align: right;
+  }
+
+  /* === Pivots bento === */
+  .pivot-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+  }
+  .pivot {
+    padding: 32px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background: var(--bg-card);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.4s, transform 0.4s;
+  }
+  .pivot:hover { border-color: var(--wine); transform: translateY(-4px); }
+  .pivot .pivot-num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 64px;
+    color: var(--wine);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .pivot h3 {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--cream);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  .pivot p {
+    font-size: 13px;
+    color: var(--cream-muted);
+    line-height: 1.7;
+  }
+  .pivot .tag {
+    margin-top: 16px;
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--wine);
+    padding: 4px 10px;
+  }
+  .pivot-1 { grid-column: 1 / span 7; }
+  .pivot-2 { grid-column: 8 / span 5; }
+  .pivot-3 { grid-column: 1 / span 5; }
+  .pivot-4 { grid-column: 6 / span 7; }
+
+  /* === Demographics === */
+  .crowd {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .crowd-card {
+    padding: 40px 32px;
+    border-right: 1px solid var(--line-soft);
+    position: relative;
+  }
+  .crowd-card:last-child { border-right: none; }
+  .crowd-card .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .crowd-card .age {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 56px;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .crowd-card h3 {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+  .crowd-card .scene {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13px;
+    color: var(--cream-muted);
+    line-height: 1.85;
+  }
+  .crowd-card .scene strong {
+    color: var(--gold-bright);
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  /* === Space section === */
+  .space-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: clamp(40px, 6vw, 96px);
+    align-items: stretch;
+  }
+  .space-card {
+    border: 1px solid var(--line);
+    padding: 48px 40px;
+    background: var(--bg-card);
+    position: relative;
+  }
+  .space-card .space-num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 88px;
+    color: var(--wine);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .space-card h3 {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 500;
+    font-size: 28px;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .space-card .sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+  .space-card ul {
+    list-style: none;
+  }
+  .space-card li {
+    padding: 16px 0;
+    border-top: 1px solid var(--line-soft);
+    font-size: 14px;
+    color: var(--cream-muted);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .space-card li span:first-child { color: var(--cream); }
+
+  /* === Model / BLAC+BLAC === */
+  .model {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: center;
+    background: var(--bg-soft);
+    padding: clamp(48px, 6vw, 96px);
+    border: 1px solid var(--line);
+  }
+  .model-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(36px, 4.5vw, 64px);
+    color: var(--cream);
+    line-height: 1.05;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  .model-text h3 em { color: var(--gold); }
+  .model-text p {
+    font-size: 15px;
+    color: var(--cream-muted);
+    line-height: 1.8;
+    max-width: 44ch;
+  }
+  .model-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .model-stat {
+    padding: 32px 24px;
+    border: 1px solid var(--wine);
+    text-align: center;
+  }
+  .model-stat .n {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 56px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .model-stat .l {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream-muted);
+  }
+
+  /* === PDF Visual References === */
+  .ref-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 64px 0 24px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .ref-title::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(to right, var(--wine) 0%, transparent 100%);
+  }
+  .ref-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .ref-card {
+    position: relative; overflow: hidden;
+    border: 1px solid var(--line); border-radius: 2px;
+    background: var(--bg-card);
+    aspect-ratio: 4/3;
+    transition: border-color 0.4s, transform 0.4s;
+  }
+  .ref-card:hover { border-color: var(--wine); transform: translateY(-3px); }
+  .ref-card img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: saturate(0.95) brightness(0.95);
+    transition: filter 0.4s, transform 0.6s;
+  }
+  .ref-card:hover img { filter: saturate(1.1) brightness(1); transform: scale(1.03); }
+  .ref-card .ref-label {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 14px 16px 12px;
+    background: linear-gradient(to top, rgba(13,7,8,0.96) 0%, rgba(13,7,8,0.75) 55%, transparent 100%);
+    display: flex; align-items: baseline; gap: 10px;
+    font-family: 'Noto Serif SC', serif; font-size: 13px;
+    color: var(--cream); line-height: 1.3;
+  }
+  .ref-card .ref-label .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; letter-spacing: 0.18em;
+    color: var(--gold); flex-shrink: 0;
+  }
+  @media (max-width: 768px) {
+    .ref-gallery { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .ref-card { aspect-ratio: 1/1; }
+  }
+
+  /* === Menu === */
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .menu-col {
+    padding: 48px 40px;
+  }
+  .menu-col:first-child { border-right: 1px solid var(--line-soft); }
+  .menu-col .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .menu-col h3 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 36px;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  .menu-col p {
+    font-size: 14px;
+    color: var(--cream-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .menu-col .items {
+    list-style: none;
+    margin-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+  .menu-col .items li {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .menu-col .items li span:first-child {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    color: var(--cream);
+  }
+  .menu-col .items li span:last-child {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* === Six senses === */
+  .senses-t1 {
+    padding: 64px 48px;
+    border: 1px solid var(--wine);
+    margin-bottom: 32px;
+    background: linear-gradient(135deg, rgba(114,47,55,0.18), transparent 60%);
+    position: relative;
+    overflow: hidden;
+  }
+  .senses-t1::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 240px; height: 240px;
+    background: radial-gradient(circle, rgba(184,54,46,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .senses-t1 .rank {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .senses-t1 h3 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(28px, 3.5vw, 44px);
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .senses-t1 h3 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .senses-t1 p {
+    font-size: 14px;
+    color: var(--cream-muted);
+    line-height: 1.85;
+    max-width: 56ch;
+    position: relative;
+  }
+  .senses-t2 {
+    border: 1px solid var(--line);
+    padding: 48px 40px;
+  }
+  .senses-t2 .rank {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream-muted);
+    margin-bottom: 32px;
+  }
+  .senses-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .sense {
+    padding: 32px 20px;
+    border-right: 1px solid var(--line-soft);
+  }
+  .sense:last-child { border-right: none; }
+  .sense .icon {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 40px;
+    color: var(--wine);
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+  .sense h4 {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+  .sense p {
+    font-size: 12px;
+    color: var(--cream-muted);
+    line-height: 1.75;
+  }
+
+  /* === Footer === */
+  footer {
+    padding: clamp(80px, 12vh, 160px) 0 clamp(40px, 6vh, 80px);
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+    position: relative;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(114,47,55,0.15), transparent 60%);
+    pointer-events: none;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: clamp(40px, 5vw, 80px);
+    margin-bottom: 80px;
+    position: relative;
+  }
+  .footer-grid h5 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .footer-grid p, .footer-grid a {
+    font-size: 14px;
+    color: var(--cream-muted);
+    line-height: 1.85;
+    text-decoration: none;
+  }
+  .footer-grid a:hover { color: var(--gold); }
+  .big-end {
+    font-family: 'Playfair Display', 'Noto Serif SC', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(48px, 9vw, 140px);
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: var(--cream);
+    position: relative;
+    margin-bottom: 64px;
+  }
+  .big-end em {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--wine-bright);
+  }
+  .copyright {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    padding-top: 32px;
+    border-top: 1px solid var(--line-soft);
+    position: relative;
+  }
+
+  /* === Marquee === */
+  .marquee {
+    margin-top: 96px;
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    position: relative;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 64px;
+    animation: scroll-x 35s linear infinite;
+    width: max-content;
+  }
+  .marquee span {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 32px;
+    color: var(--cream);
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+  }
+  .marquee span::before {
+    content: '◆';
+    color: var(--wine);
+    margin-right: 64px;
+    font-style: normal;
+    font-size: 18px;
+  }
+  @keyframes scroll-x {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* === Reveal animations === */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.4s cubic-bezier(0.2, 0.7, 0.2, 1), transform 1.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* === Counter === */
+  .counter {
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .marquee-track { animation: none; }
+    .cursor { display: none; }
+    body { cursor: auto; }
+  }
+
+  @media (max-width: 768px) {
+    .hero-stage { grid-template-columns: 1fr; }
+    .wine-pour { display: none; }
+    .pivot-grid { grid-template-columns: 1fr; }
+    .pivot-1, .pivot-2, .pivot-3, .pivot-4 { grid-column: 1; }
+    .crowd { grid-template-columns: 1fr; }
+    .crowd-card { border-right: none; border-bottom: 1px solid var(--line-soft); }
+    .space-grid, .model, .menu-grid { grid-template-columns: 1fr; }
+    .menu-col:first-child { border-right: none; border-bottom: 1px solid var(--line-soft); }
+    .footer-grid { grid-template-columns: 1fr; }
+    .senses-list { grid-template-columns: 1fr 1fr; }
+    .sense { border-bottom: 1px solid var(--line-soft); }
+    .section-head { grid-template-columns: auto 1fr; }
+    .section-head .index { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <svg class="wine-pour" viewBox="0 0 300 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Wine bottle silhouette -->
+    <g stroke="#C9A876" stroke-width="0.6" fill="none" opacity="0.55">
+      <path d="M 130 80 L 170 80 L 170 130 L 175 145 Q 178 152 178 160 L 178 510 Q 178 525 168 530 L 132 530 Q 122 525 122 510 L 122 160 Q 122 152 125 145 L 130 130 Z" stroke-dasharray="2000" stroke-dashoffset="2000">
+        <animate attributeName="stroke-dashoffset" from="2000" to="0" dur="3.5s" fill="freeze" />
+      </path>
+      <line x1="130" y1="110" x2="170" y2="110" opacity="0.4"/>
+      <line x1="125" y1="280" x2="175" y2="280" opacity="0.3"/>
+    </g>
+    <!-- Wine liquid inside -->
+    <g fill="#722F37" opacity="0.45">
+      <rect x="125" y="350" width="50" height="180" rx="2">
+        <animate attributeName="height" from="0" to="180" dur="3s" begin="1s" fill="freeze" />
+        <animate attributeName="y" from="530" to="350" dur="3s" begin="1s" fill="freeze" />
+      </rect>
+    </g>
+    <!-- Label on bottle -->
+    <g fill="#EDE4D0" opacity="0">
+      <rect x="130" y="295" width="40" height="60" rx="1"/>
+      <animate attributeName="opacity" from="0" to="0.6" dur="1.5s" begin="3.5s" fill="freeze" />
+    </g>
+    <g font-family="serif" font-style="italic" fill="#0d0708" opacity="0">
+      <text x="150" y="318" font-size="9" text-anchor="middle">CHÂTEAU</text>
+      <text x="150" y="332" font-size="6" text-anchor="middle" letter-spacing="2">MMXXVI</text>
+      <animate attributeName="opacity" from="0" to="0.85" dur="1.5s" begin="3.8s" fill="freeze" />
+    </g>
+  </svg>
+
+  <div class="wrap">
+    <div class="meta">
+      <span>MAISON L'ATELIER · 模式五</span>
+      <span><em>●</em> 品牌转型企划</span>
+    </div>
+
+    <div class="hero-stage">
+      <div class="title-block">
+        <div class="eyebrow">Brand Transformation · MMXXVI</div>
+        <h1 class="title">
+          酒<em>·</em>主题<br>
+          融合创意<br>
+          <span class="accent">西餐厅</span>
+          <small>PROJET 05 — RESTAURANT &amp; WINE LOUNGE</small>
+        </h1>
+      </div>
+
+      <div class="hero-side">
+        <p class="lede">
+          让每一杯都有故事，<br>让每一道都是世界。<br>
+          <em>— 坚持精酿西餐厅赛道</em>，<br>
+          全面升级餐点，引入自助打酒设备，<br>
+          打造<em>"世界酒款大收集"</em>主题。
+        </p>
+
+        <div class="figure">
+          <div><span class="counter" data-target="110">0</span><small>期望人均 · 元</small></div>
+          <div><span class="counter" data-target="30">0</span><small>酒款品类 · +</small></div>
+          <div><span class="counter" data-target="3">0</span><small>核心客群 · 类</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meta" style="margin-top: 64px;">
+      <span>MMXXVI · WINE × CULINARY × PLACE</span>
+      <span>FOR THE CITY · 苏州 狮山</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>世界酒款大收集</span>
+    <span>自助精酿酒墙</span>
+    <span>红白酒品鉴区</span>
+    <span>在地食材融合菜</span>
+    <span>苏州最大西餐厅</span>
+    <span>六感体验升级</span>
+    <span>110元期望人均</span>
+    <span>世界酒款大收集</span>
+    <span>自助精酿酒墙</span>
+    <span>红白酒品鉴区</span>
+    <span>在地食材融合菜</span>
+    <span>苏州最大西餐厅</span>
+    <span>六感体验升级</span>
+    <span>110元期望人均</span>
+  </div>
+</div>
+
+<!-- ===== SECTION 01 / PIVOT ===== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">01</span>
+      <h2>品牌营销支点<br><span style="font-size:0.55em;color:var(--cream-muted);font-style:normal;">Four Strategic Pillars</span></h2>
+      <span class="index">品牌 · PIVOT</span>
+    </div>
+
+    <div class="pivot-grid">
+      <article class="pivot pivot-1 reveal">
+        <div class="pivot-num">01</div>
+        <h3>超大场地 · 苏州最大西餐厅</h3>
+        <p>在原有场地优势的基础上，对餐厅环境做全面升级。围绕大堂与包厢的不同空间属性，做功能区分，让"超大"不仅是面积数字，更是体验纵深。</p>
+        <span class="tag">SPACE-FIRST</span>
+      </article>
+
+      <article class="pivot pivot-2 reveal reveal-delay-1">
+        <div class="pivot-num">02</div>
+        <h3>全新设备 · 流动式喝酒氛围</h3>
+        <p>引入精酿自助酒墙（20-30 款）与红白酒自助酒柜（30+ 款）。新设备即核心卖点，自助即仪式感。</p>
+        <span class="tag">EQUIPMENT</span>
+      </article>
+
+      <article class="pivot pivot-3 reveal reveal-delay-2">
+        <div class="pivot-num">03</div>
+        <h3>酒水经销合作 · 富隆酒业</h3>
+        <p>借鉴富隆酒业模式，把店内红白酒做出"经销"质感。选酒区陈列 + 品酒区品鉴 = 一整套店内酒水服务形式。</p>
+        <span class="tag">PARTNERSHIP</span>
+      </article>
+
+      <article class="pivot pivot-4 reveal reveal-delay-3">
+        <div class="pivot-num">04</div>
+        <h3>餐点升级 · 创意融合菜</h3>
+        <p>原餐点精简筛选后做升级调整（口味 / 摆盘 / 食材）。同时根据市场需求，新增甜品 / 饮品 / 户外烧烤 / 创新融合菜（使用在地食材）。</p>
+        <span class="tag">CULINARY</span>
+      </article>
+    </div>
+
+    <div class="ref-title">PDF · 设备 & 服务实拍</div>
+    <div class="ref-gallery">
+      <a class="ref-card" href="images/p04.jpg" target="_blank">
+        <img src="images/p04.jpg" alt="自助米精酿啤酒墙" loading="lazy">
+        <div class="ref-label"><span class="num">P04</span>自助米精酿啤酒墙 · 流动式喝</div>
+      </a>
+      <a class="ref-card" href="images/p05.jpg" target="_blank">
+        <img src="images/p05.jpg" alt="自助红酒机" loading="lazy">
+        <div class="ref-label"><span class="num">P05</span>自助红酒机 · 30+ 款</div>
+      </a>
+      <a class="ref-card" href="images/p06.jpg" target="_blank">
+        <img src="images/p06.jpg" alt="富隆酒业 经销合作" loading="lazy">
+        <div class="ref-label"><span class="num">P06</span>富隆酒业 · 经销合作</div>
+      </a>
+      <a class="ref-card" href="images/p07.jpg" target="_blank">
+        <img src="images/p07.jpg" alt="选酒区" loading="lazy">
+        <div class="ref-label"><span class="num">P07</span>选酒区 · 麦仓区域</div>
+      </a>
+      <a class="ref-card" href="images/p08.jpg" target="_blank">
+        <img src="images/p08.jpg" alt="品酒区 6 类空间" loading="lazy">
+        <div class="ref-label"><span class="num">P08</span>品酒区 · 6 类空间</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 02 / CROWD ===== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">02</span>
+      <h2>周边人群<br><span style="font-size:0.55em;color:var(--cream-muted);font-style:normal;">Three Segments · 1km Coverage</span></h2>
+      <span class="index">客群 · CROWD</span>
+    </div>
+
+    <div class="crowd">
+      <article class="crowd-card reveal">
+        <div class="label">Segment · A</div>
+        <div class="age">25–35</div>
+        <h3>办公室白领客群</h3>
+        <p class="scene">
+          <strong>午间</strong> · 午餐需求 · 商务简餐 · 商务会议<br>
+          <strong>晚间</strong> · 商务宴请 · 公司团建 · 同事聚餐<br><br>
+          苏州狮山核心 CBD · 27 座+ 写字楼 · 1 公里覆盖
+        </p>
+      </article>
+
+      <article class="crowd-card reveal reveal-delay-1">
+        <div class="label">Segment · B</div>
+        <div class="age">30–45</div>
+        <h3>医疗美容爱美女性</h3>
+        <p class="scene">
+          <strong>午间</strong> · 午餐需求 · 客户约谈<br>
+          <strong>晚间</strong> · 晚餐需求 · 朋友聚会 · 微醺小酌<br><br>
+          8+ 医疗美容机构聚集 · 狮山区域核心
+        </p>
+      </article>
+
+      <article class="crowd-card reveal reveal-delay-2">
+        <div class="label">Segment · C</div>
+        <div class="age">30–45</div>
+        <h3>高端小区家庭客群</h3>
+        <p class="scene">
+          <strong>午间</strong> · 家庭聚餐 · 朋友聚会 · 不想做饭时可选择<br>
+          <strong>晚间</strong> · 晚餐需求 · 朋友聚会 · 各类观赛需求<br><br>
+          14+ 高端住宅小区 · 4.5–9 万 / 平米
+        </p>
+      </article>
+    </div>
+
+    <div style="margin-top: 56px; padding: 32px; border: 1px solid var(--wine); display: flex; justify-content: space-between; align-items: baseline; gap: 24px;" class="reveal">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);">期望人均消费</span>
+      <span style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 64px; color: var(--cream); line-height: 1;">
+        ¥<span class="counter" data-target="110">0</span>
+        <span style="font-size: 24px; color: var(--cream-muted);"> / 人</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 03 / SPACE ===== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">03</span>
+      <h2>装修风格<br><span style="font-size:0.55em;color:var(--cream-muted);font-style:normal;">Light Renovate · Memory Point</span></h2>
+      <span class="index">空间 · SPACE</span>
+    </div>
+
+    <p style="max-width: 760px; font-size: 17px; color: var(--cream-muted); line-height: 1.85; margin-bottom: 56px;" class="reveal">
+      清亮明亮年轻化，依照 Lily 老师先前提出的<em style="color: var(--gold); font-style: italic;">轻装修</em>方向。其装修需有记忆点、具吸引打卡拍照功能，且要与时下网红餐厅风格有差别——有新亮点、设计巧思。
+    </p>
+
+    <div class="space-grid">
+      <article class="space-card reveal">
+        <div class="space-num">A</div>
+        <h3>大堂区域</h3>
+        <div class="sub">PUBLIC · HALL</div>
+        <ul>
+          <li><span>砖墙圆拱</span><span>金河店元素</span></li>
+          <li><span>自助酒柱融入</span><span>核心视觉点</span></li>
+          <li><span>明档精酿酒墙</span><span>20–30 款</span></li>
+          <li><span>红白酒自助机</span><span>30+ 款</span></li>
+        </ul>
+      </article>
+
+      <article class="space-card reveal reveal-delay-1">
+        <div class="space-num">B</div>
+        <h3>包厢空间</h3>
+        <div class="sub">PRIVATE · CELLAR</div>
+        <ul>
+          <li><span>选酒区</span><span>麦仓区域 / 柜台前</span></li>
+          <li><span>品酒区</span><span>包间 / 宠物区</span></li>
+          <li><span>会议长桌</span><span>商务场景</span></li>
+          <li><span>户外露台</span><span>社交扩展</span></li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="ref-title">PDF · 大堂风格参考实拍</div>
+    <div class="ref-gallery">
+      <a class="ref-card" href="images/p12.jpg" target="_blank">
+        <img src="images/p12.jpg" alt="大堂风格参考" loading="lazy">
+        <div class="ref-label"><span class="num">P12</span>砖墙圆拱 · 酒柱融入</div>
+      </a>
+      <a class="ref-card" href="images/p13.jpg" target="_blank">
+        <img src="images/p13.jpg" alt="大堂风格 collage" loading="lazy">
+        <div class="ref-label"><span class="num">P13</span>大堂多角度 · 记忆点</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 04 / MODEL ===== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">04</span>
+      <h2>经营特色参考<br><span style="font-size:0.55em;color:var(--cream-muted);font-style:normal;">BLAC+BLAC Model · Adapted</span></h2>
+      <span class="index">模式 · MODEL</span>
+    </div>
+
+    <div class="model reveal">
+      <div class="model-text">
+        <h3>
+          融合式<em>创意</em>餐厅<br>
+          99 元 · 3 小时<br>
+          畅饮活动
+        </h3>
+        <p>借鉴 BLAC+BLAC 以<strong>自助红酒机</strong>为核心卖点的模型，主打高性价比畅饮活动。酒主题不需要高门槛——把"打酒"做成仪式，把"喝"做成日常。</p>
+      </div>
+      <div class="model-stats">
+        <div class="model-stat">
+          <div class="n counter" data-target="7">0</div>
+          <div class="l">店内机器</div>
+        </div>
+        <div class="model-stat">
+          <div class="n counter" data-target="28">0</div>
+          <div class="l">酒款上限</div>
+        </div>
+        <div class="model-stat">
+          <div class="n">99<span style="font-size: 24px;">¥</span></div>
+          <div class="l">3 小时畅饮</div>
+        </div>
+        <div class="model-stat">
+          <div class="n">24/7</div>
+          <div class="l">自助模式</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-title">PDF · 经营特色参考实拍</div>
+    <div class="ref-gallery">
+      <a class="ref-card" href="images/p14.jpg" target="_blank">
+        <img src="images/p14.jpg" alt="BLAC+BLAC 餐厅参考" loading="lazy">
+        <div class="ref-label"><span class="num">P14</span>BLAC+BLAC · 99元 / 3h</div>
+      </a>
+      <a class="ref-card" href="images/p15.jpg" target="_blank">
+        <img src="images/p15.jpg" alt="自助酒柜布置参考" loading="lazy">
+        <div class="ref-label"><span class="num">P15</span>自助酒柜 · 7 机 28 款</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 05 / MENU ===== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">05</span>
+      <h2>餐点方向<br><span style="font-size:0.55em;color:var(--cream-muted);font-style:normal;">Curated Upgrades + New Hits</span></h2>
+      <span class="index">餐点 · MENU</span>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-col reveal">
+        <div class="label">A · 原有餐点</div>
+        <h3>精简 · 升级</h3>
+        <p>原餐点精简筛选后做升级调整：口味 / 摆盘 / 食材变更，保留长青款，淘汰销量低、复购弱的 SKU。</p>
+        <ul class="items">
+          <li><span>口味升级</span><span>FLAVOR</span></li>
+          <li><span>摆盘升级</span><span>PLATING</span></li>
+          <li><span>食材升级</span><span>INGREDIENT</span></li>
+        </ul>
+      </div>
+
+      <div class="menu-col reveal reveal-delay-1">
+        <div class="label">B · 新增爆品</div>
+        <h3>在地 · 融合</h3>
+        <p>根据市场需求，打造新款爆品——甜品 / 饮品 / 户外烧烤 / 创新融合菜（使用在地食材），形成与"酒主题"互补的味觉纵深。</p>
+        <ul class="items">
+          <li><span>在地甜品</span><span>LOCAL DESSERT</span></li>
+          <li><span>创意饮品</span><span>CRAFT BEVERAGE</span></li>
+          <li><span>户外烧烤</span><span>OUTDOOR BBQ</span></li>
+          <li><span>融合菜</span><span>FUSION</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 06 / SENSES ===== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">06</span>
+      <h2>六感体验排序<br><span style="font-size:0.55em;color:var(--cream-muted);font-style:normal;">First Tier · Sensory Cascade</span></h2>
+      <span class="index">六感 · SENSES</span>
+    </div>
+
+    <div class="senses-t1 reveal">
+      <div class="rank">▸ 第一梯队 · PRIMARY</div>
+      <h3>
+        以<em>视觉</em>为核心，<br>
+        展现品牌<em>"世界酒款大收集"</em>特色。
+      </h3>
+      <p>
+        围绕进入的<strong>全新设备</strong>做文章——有识别性的 VI &amp; SI、强化门头设计、自助打酒设备。从"看到"开始，让客人明白这里<em>和其他西餐厅不一样</em>。
+      </p>
+    </div>
+
+    <div class="senses-t2 reveal">
+      <div class="rank">▸ 第二梯队 · CASCADE</div>
+      <div class="senses-list">
+        <div class="sense">
+          <div class="icon">触</div>
+          <h4>感觉</h4>
+          <p>高品质融合创意西餐的氛围感</p>
+        </div>
+        <div class="sense">
+          <div class="icon">嗅</div>
+          <h4>嗅觉</h4>
+          <p>食物的香气与各类酒香相融合</p>
+        </div>
+        <div class="sense">
+          <div class="icon">味</div>
+          <h4>味觉</h4>
+          <p>餐点口味全面升级 + 新增爆款</p>
+        </div>
+        <div class="sense">
+          <div class="icon">听</div>
+          <h4>听觉</h4>
+          <p>适合动感音乐 · 小众欧美歌手</p>
+        </div>
+        <div class="sense">
+          <div class="icon">感</div>
+          <h4>触觉</h4>
+          <p>软装桌椅以柔软为主 · 提升触感</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h5>项目</h5>
+        <p>模式五 · 酒主题融合创意西餐厅<br>坚持麦三精酿西餐厅赛道<br>全新品牌定位 + 空间 + 设备升级</p>
+      </div>
+      <div>
+        <h5>客户</h5>
+        <p>倪侃 · MAISON L'ATELIER<br>品牌方 · 麦三精酿西餐厅<br>金河店 · 苏州狮山</p>
+      </div>
+      <div>
+        <h5>合作</h5>
+        <p>设计 · Friday × openclaw<br>字体 · Playfair Display + IBM Plex Mono<br>2026 · 全部数据基于用户企划书</p>
+      </div>
+    </div>
+
+    <div class="big-end reveal">
+      让每一杯，<br>都有故事<em>。</em>
+    </div>
+
+    <div class="copyright">
+      <span>© 2026 MAISON L'ATELIER · 品牌转型企划书</span>
+      <span>模式五 · 酒主题融合创意西餐厅</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // === Custom cursor ===
+  (function(){
+    var c = document.getElementById('cursor');
+    var x = 0, y = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', function(e){
+      x = e.clientX; y = e.clientY;
+    });
+    function tick(){
+      cx += (x - cx) * 0.18;
+      cy += (y - cy) * 0.18;
+      c.style.transform = 'translate('+(cx-3)+'px,'+(cy-3)+'px)';
+      requestAnimationFrame(tick);
+    }
+    tick();
+    document.querySelectorAll('a, button, .pivot, .crowd-card, .space-card, .sense, .menu-col').forEach(function(el){
+      el.addEventListener('mouseenter', function(){ c.classList.add('hover'); });
+      el.addEventListener('mouseleave', function(){ c.classList.remove('hover'); });
+    });
+  })();
+
+  // === Reveal on scroll ===
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function(e){ e.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) {
+          en.target.classList.add('in');
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+    els.forEach(function(e){ io.observe(e); });
+  })();
+
+  // === Counter (count up on first viewport entry) ===
+  (function(){
+    var counters = document.querySelectorAll('.counter[data-target]');
+    if (!('IntersectionObserver' in window)) {
+      counters.forEach(function(el){ el.textContent = el.getAttribute('data-target'); });
+      return;
+    }
+    var seen = new WeakSet();
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting && !seen.has(en.target)) {
+          seen.add(en.target);
+          var el = en.target;
+          var target = parseFloat(el.getAttribute('data-target'));
+          var dur = 1400;
+          var start = performance.now();
+          function step(now){
+            var t = Math.min(1, (now - start) / dur);
+            var eased = 1 - Math.pow(1 - t, 3);
+            el.textContent = Math.round(target * eased);
+            if (t < 1) requestAnimationFrame(step);
+            else el.textContent = target;
+          }
+          requestAnimationFrame(step);
+        }
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(function(c){ io.observe(c); });
+  })();
+
+  // === Subtle parallax on hero title ===
+  (function(){
+    var t = document.querySelector('.title');
+    if (!t) return;
+    var raf = null;
+    window.addEventListener('scroll', function(){
+      if (raf) return;
+      raf = requestAnimationFrame(function(){
+        t.style.transform = 'translateY(' + (window.scrollY * -0.06) + 'px)';
+        raf = null;
+      });
+    }, { passive: true });
+  })();
+</script>
+
+</body>
+</html>
